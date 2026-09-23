@@ -1,0 +1,18 @@
+services:
+  barcode-api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: barcode-api
+    restart: always
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - STORAGE_DIR=/var/barcodes
+      - CORS_ORIGIN=*
+      - NODE_ENV=production
+    volumes:
+      # Mapea la carpeta del servidor Linux hacia el contenedor
+      # Cambia '/var/barcodes_host' por la ruta real deseada en el servidor Linux
+      - /var/barcodes:/var/barcodes

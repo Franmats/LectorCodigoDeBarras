@@ -1,0 +1,18 @@
+[Unit]
+Description=Barcode API Service (Node.js TypeScript)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/barcode-api
+ExecStart=/usr/bin/node /opt/barcode-api/dist/server.js
+Restart=on-failure
+RestartSec=5
+Environment=NODE_ENV=production
+Environment=PORT=4000
+Environment=STORAGE_DIR=/var/barcodes
+Environment=CORS_ORIGIN=*
+
+[Install]
+WantedBy=multi-user.target
