@@ -11,9 +11,12 @@ const soundService = new WebAudioFeedbackService();
 const sendUseCase = new SendBarcodeUseCase(apiRepository);
 const scanUseCase = new ScanBarcodeUseCase(sendUseCase, soundService);
 
+type CameraOffReason = 'manual' | 'idle' | null;
+
 interface BarcodeState {
   scans: BarcodeScan[];
   isCameraActive: boolean;
+  cameraOffReason: CameraOffReason;
   torchEnabled: boolean;
   apiUrl: string;
 
@@ -21,7 +24,7 @@ interface BarcodeState {
   addScan: (scan: BarcodeScan) => void;
   updateScan: (id: string, updates: Partial<BarcodeScan>) => void;
   clearScans: () => void;
-  setIsCameraActive: (active: boolean) => void;
+  setIsCameraActive: (active: boolean, reason?: CameraOffReason) => void;
   setTorchEnabled: (enabled: boolean) => void;
 
   // Operaciones de negocio
@@ -33,6 +36,7 @@ interface BarcodeState {
 export const useBarcodeStore = create<BarcodeState>((set, get) => ({
   scans: [],
   isCameraActive: true,
+  cameraOffReason: null,
   torchEnabled: false,
   apiUrl: import.meta.env.VITE_API_URL || 'http://localhost:4000/api',
 
@@ -51,7 +55,8 @@ export const useBarcodeStore = create<BarcodeState>((set, get) => ({
 
   clearScans: () => set({ scans: [] }),
 
-  setIsCameraActive: (active) => set({ isCameraActive: active }),
+  setIsCameraActive: (active, reason = null) =>
+    set({ isCameraActive: active, cameraOffReason: active ? null : reason }),
 
   setTorchEnabled: (enabled) => set({ torchEnabled: enabled }),
 

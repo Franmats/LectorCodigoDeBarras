@@ -1,7 +1,7 @@
-import { IBarcodeApiRepository, SendBarcodeResult } from '../domain/ports/IBarcodeApiRepository.js';
+import type { IBarcodeApiRepository, SendBarcodeResult } from '../domain/ports/IBarcodeApiRepository.js';
 
 export class SendBarcodeUseCase {
-  constructor(private apiRepository: IBarcodeApiRepository) {}
+  constructor(private apiRepository: IBarcodeApiRepository) { }
 
   public async execute(code: string, format: string = 'UNKNOWN'): Promise<SendBarcodeResult> {
     const trimmed = code.trim();

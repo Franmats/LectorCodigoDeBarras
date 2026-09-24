@@ -7,10 +7,13 @@ export class ScanBarcodeUseCase {
   private lastScannedTime: number = 0;
   private readonly debounceMs = 2500; // Evita lecturas duplicadas continuas en ráfaga de la cámara
 
-  constructor(
-    private sendUseCase: SendBarcodeUseCase,
-    private soundService: ISoundService
-  ) { }
+  private sendUseCase: SendBarcodeUseCase;
+  private soundService: ISoundService;
+
+  constructor(sendUseCase: SendBarcodeUseCase, soundService: ISoundService) {
+    this.sendUseCase = sendUseCase;
+    this.soundService = soundService;
+  }
 
   public async processScan(
     rawCode: string,

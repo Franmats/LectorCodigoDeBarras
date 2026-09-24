@@ -5,7 +5,7 @@ export class BarcodeHttpRepository implements IBarcodeApiRepository {
 
   constructor(baseUrl?: string) {
     // Si no se define VITE_API_URL, se usa por defecto la API local
-    const rawUrl = baseUrl || import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+    const rawUrl = baseUrl || import.meta.env.VITE_API_URL || 'http://localhost:4000/api/';
     // Remover barra final si existe
     this.baseUrl = rawUrl.replace(/\/+$/, '');
   }

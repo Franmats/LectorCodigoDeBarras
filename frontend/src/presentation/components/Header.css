@@ -1,0 +1,88 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.app-header__brand svg {
+  color: var(--brand-cyan);
+}
+
+.app-header__stats {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.stat {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+}
+
+.stat--sent {
+  color: var(--status-success);
+  background: var(--status-success-bg);
+}
+
+.stat--pending {
+  color: var(--status-pending);
+  background: var(--status-pending-bg);
+}
+
+.stat--error {
+  color: var(--status-error);
+  background: var(--status-error-bg);
+}
+
+.app-header__camera-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.app-header__camera-toggle:hover {
+  border-color: var(--border-focus);
+}
+
+.app-header__camera-toggle[aria-pressed='false'] {
+  color: var(--status-error);
+  border-color: var(--status-error);
+}
+
+@media (max-width: 520px) {
+  .app-header {
+    flex-wrap: wrap;
+  }
+  .app-header__stats {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

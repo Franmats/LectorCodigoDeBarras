@@ -1,0 +1,20 @@
+.install-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--brand-cyan);
+    background: transparent;
+    color: var(--brand-cyan);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+}
+
+.install-button:hover {
+    background: var(--brand-cyan);
+    color: var(--bg-primary);
+}
